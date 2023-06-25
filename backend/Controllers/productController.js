@@ -29,7 +29,6 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   req.body.images=imagesLinks;
   
   const product = await Product.create(req.body);
-  console.log("In Controller 5");
 
   res.status(201).json({
     success: true,
