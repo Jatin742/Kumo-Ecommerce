@@ -61,6 +61,9 @@
 }
 
 @media screen and (max-width: 600px) {
+    .paymentContainer {
+        height: auto;
+    }
     .paymentForm{
         width: 90%;
     }
