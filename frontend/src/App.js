@@ -42,13 +42,13 @@ import ProductReviews from './Components/Admin/ProductReviews';
 function App() {
   async function getStripeApiKey() {
     try {
-      const { data } = await axios.get(`/api/v1/stripeapikey`);
+      const { data } = await axios.get(`/api/v1/stripeapikey`, { withCredentials: true });
       setStripeApiKey(data.stripeApiKey);
     } catch (error) {
 
     }
   }
-  
+
   const { isAuthenticated, user } = useSelector(state => state.user);
   const [stripeApiKey, setStripeApiKey] = useState("");
   useEffect(() => {
@@ -73,28 +73,28 @@ function App() {
         <Route exact path='/products' element={<Products />} />
         <Route exact path='/products/:keyword' element={<Products />} />
         <Route exact path='/login' element={<LoginSignUp />} />
-        <Route exact path="/account" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={Profile}/> } />
-        <Route exact path="/me/update" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={UpdateProfile}/>} />
-        <Route exact path="/password/update" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={UpdatePassword}/>} />
+        <Route exact path="/account" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={Profile} />} />
+        <Route exact path="/me/update" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={UpdateProfile} />} />
+        <Route exact path="/password/update" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={UpdatePassword} />} />
         <Route exact path="/password/forgot" element={<ForgotPassword />} />
         <Route exact path="/password/reset/:token" element={<ResetPassword />} />
         <Route exact path="/cart" element={<Cart />} />
-        <Route exact path="/shipping" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={Shipping}/>} />
-        <Route exact path="/order/confirm" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={ConfirmOrder}/>} />
-        {stripeApiKey!=="" &&<Route exact path='/process/payment' element={<ProtectedRoute isAuthenticated={isAuthenticated}>
-            <Elements stripe={loadStripe(stripeApiKey)}> <Payment /> </Elements></ProtectedRoute>}/>}
-        <Route exact path='/success' element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={OrderSuccess}/>}/>
-        <Route exact path='/orders' element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={MyOrders}/>}/>
-        <Route exact path='/order/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={OrderDetails}/>}/>
-        <Route exact path='/admin/dashboard' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={DashBoard}/>}/>
-        <Route exact path='/admin/products' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={ProductList}/>}/>
-        <Route exact path='/admin/product' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={NewProduct}/>}/>
-        <Route exact path='/admin/product/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={UpdateProduct}/>}/>
-        <Route exact path='/admin/orders' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={OrderList}/>}/>
-        <Route exact path='/admin/order/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={ProcessOrder}/>}/>
-        <Route exact path='/admin/users' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={UsersList}/>}/>
-        <Route exact path='/admin/user/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={UpdateUser}/>}/>
-        <Route exact path='/admin/reviews' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={ProductReviews}/>}/>
+        <Route exact path="/shipping" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={Shipping} />} />
+        <Route exact path="/order/confirm" element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={ConfirmOrder} />} />
+        {stripeApiKey !== "" && <Route exact path='/process/payment' element={<ProtectedRoute isAuthenticated={isAuthenticated}>
+          <Elements stripe={loadStripe(stripeApiKey)}> <Payment /> </Elements></ProtectedRoute>} />}
+        <Route exact path='/success' element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={OrderSuccess} />} />
+        <Route exact path='/orders' element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={MyOrders} />} />
+        <Route exact path='/order/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} Component={OrderDetails} />} />
+        <Route exact path='/admin/dashboard' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={DashBoard} />} />
+        <Route exact path='/admin/products' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={ProductList} />} />
+        <Route exact path='/admin/product' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={NewProduct} />} />
+        <Route exact path='/admin/product/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={UpdateProduct} />} />
+        <Route exact path='/admin/orders' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={OrderList} />} />
+        <Route exact path='/admin/order/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={ProcessOrder} />} />
+        <Route exact path='/admin/users' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={UsersList} />} />
+        <Route exact path='/admin/user/:id' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={UpdateUser} />} />
+        <Route exact path='/admin/reviews' element={<ProtectedRoute isAuthenticated={isAuthenticated} isAdmin={true} Component={ProductReviews} />} />
       </Routes>
       <Footer />
     </Router>
