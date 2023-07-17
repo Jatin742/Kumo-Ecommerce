@@ -4,7 +4,6 @@ const app = express();
 const errorMiddleware = require("./Middlewares/error");
 const cookieParser=require("cookie-parser");
 const morgan=require("morgan");
-const bodyParser=require("body-parser");
 const fileUpload=require("express-fileupload");
 const cors=require('cors');
 
@@ -15,7 +14,7 @@ app.use(cors({
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // Route Imports
