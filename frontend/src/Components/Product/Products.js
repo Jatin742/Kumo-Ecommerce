@@ -8,13 +8,13 @@ import { useParams } from 'react-router-dom';
 import Pagination from "react-js-pagination";
 import Typography from "@material-ui/core/Typography";
 import Slider from '@material-ui/core/Slider'
-import {useAlert} from "react-alert";
+import { useAlert } from "react-alert";
 import MetaData from '../Layout/MetaData';
 
 const Products = () => {
   const { keyword } = useParams();
   const dispatch = useDispatch();
-  const alert=useAlert();
+  const alert = useAlert();
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -30,9 +30,9 @@ const Products = () => {
   const categories = ["Laptop", "Footwear", "Bottom", "Tops", "Attire", "Camera", "SmartPhones", "Watch"];
 
   const [category, setCategory] = useState("");
-  const [ratings, setRatings]=useState(0);
+  const [ratings, setRatings] = useState(0);
   useEffect(() => {
-    if(error){
+    if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
@@ -45,13 +45,17 @@ const Products = () => {
     <Fragment>
       {loading ? <Loader /> :
         <Fragment>
-          <MetaData title="Products -- Kumo"/>
+          <MetaData title="Products -- Kumo" />
+          <div className="product-page">
+          <div className="product-box">
+
           <h2 className="productsHeading">Products</h2>
           <div className="products">
             {products &&
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
-              ))}
+                ))}
+          </div>
           </div>
 
           <div className="filterBox">
@@ -69,30 +73,31 @@ const Products = () => {
               {
                 categories.map((category) => (
                   <li
-                    className='category-link'
-                    key={category}
-                    onClick={() => setCategory(category)}
+                  className='category-link'
+                  key={category}
+                  onClick={() => setCategory(category)}
                   >{category}</li>
-                ))
-              }
+                  ))
+                }
             </ul>
 
-              <fieldset>
-                <Typography component="legend">Ratings Above</Typography>
-                <Slider
-                  value={ratings}
-                  onChange={(e, newRatings)=>{
-                    setRatings(newRatings);
-                  }}
-                  aria-labelledby='continuous-slider'
-                  valueLabelDisplay='auto'
-                  min={0}
-                  max={5}
-                  />
-              </fieldset>
+            <fieldset>
+              <Typography component="legend">Ratings Above</Typography>
+              <Slider
+                value={ratings}
+                onChange={(e, newRatings) => {
+                  setRatings(newRatings);
+                }}
+                aria-labelledby='continuous-slider'
+                valueLabelDisplay='auto'
+                min={0}
+                max={5}
+                />
+            </fieldset>
 
           </div>
 
+          </div>
           {((currentPage - 1) * resultPerPage + productsPerPage < count) && (
             <div className="paginationBox">
               <Pagination

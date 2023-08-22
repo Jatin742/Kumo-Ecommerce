@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.product-page {
+  display: flex;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -70,9 +74,11 @@
 
 .filterBox {
   width: 10vmax;
-  top: 13vmax;
+  /* top: 13vmax;
   left: 2vmax;
-  position: absolute;
+  position: absolute; */
+  order: -1;
+  padding: 20px;
 }
 
 .categoryBox {
@@ -98,10 +104,15 @@
 }
 
 @media screen and (max-width: 600px) {
+  .product-page {
+    flex-direction: column;
+    
+  }
   .filterBox {
     width: 20vmax;
     position: static;
     margin: auto;
+    order: 1;
   }
 
   .page-link {
