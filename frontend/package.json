@@ -19,6 +19,7 @@
     "canvas-to-blob": "^1.0.0",
     "chart.js": "^4.3.0",
     "country-state-city": "^3.1.4",
+    "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
@@ -63,6 +64,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://192.168.29.129:5000"
+  }
 }

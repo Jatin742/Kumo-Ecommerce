@@ -38,11 +38,16 @@ import ProcessOrder from './Components/Admin/ProcessOrder';
 import UsersList from './Components/Admin/UsersList';
 import UpdateUser from './Components/Admin/UpdateUser';
 import ProductReviews from './Components/Admin/ProductReviews';
+import Cookies from 'js-cookie';
 
 function App() {
   async function getStripeApiKey() {
     try {
-      const { data } = await axios.get(`/api/v1/stripeapikey`, { withCredentials: true });
+      if(!Cookies.get("token")){
+        return;
+      }
+      const host=process.env.REACT_APP_BACKEND_URL;
+      const { data } = await axios.get(`${host}/api/v1/stripeapikey`, { withCredentials: true });
       setStripeApiKey(data.stripeApiKey);
     } catch (error) {
 
