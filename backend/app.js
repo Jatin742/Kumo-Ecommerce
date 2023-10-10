@@ -7,14 +7,14 @@ const morgan=require("morgan");
 const fileUpload=require("express-fileupload");
 const cors=require('cors');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(cors({
     origin: true,
     credentials: true,
   }));
 app.use(morgan('dev'));
-app.use(express.json());
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // Route Imports
