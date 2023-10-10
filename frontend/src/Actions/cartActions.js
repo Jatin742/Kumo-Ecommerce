@@ -1,10 +1,11 @@
 import { ADD_TO_CART, REMOVE_CART_ITEM, SAVE_SHIPPING_INFO } from "../Constants/cartConstant";
 import axios from "axios";
 
+const host=process.env.REACT_APP_BACKEND_HOST;
 export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
 
     const { data } = await axios.get(
-        `/api/v1/product/${id}`,
+        `${host}/api/v1/product/${id}`,
         { withCredentials: true }
     );
     dispatch({

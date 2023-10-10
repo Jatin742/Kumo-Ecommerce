@@ -40,9 +40,10 @@ import UpdateUser from './Components/Admin/UpdateUser';
 import ProductReviews from './Components/Admin/ProductReviews';
 
 function App() {
+  const host=process.env.REACT_APP_BACKEND_HOST;
   async function getStripeApiKey() {
     try {
-      const { data } = await axios.get(`/api/v1/stripeapikey`, { withCredentials: true });
+      const { data } = await axios.get(`${host}/api/v1/stripeapikey`, { withCredentials: true });
       setStripeApiKey(data.stripeApiKey);
     } catch (error) {
 
