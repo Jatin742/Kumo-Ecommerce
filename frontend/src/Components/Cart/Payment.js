@@ -47,8 +47,10 @@ const Payment = () => {
             headers: {
               "Content-Type":"application/json"
             },
+            withCredentials:true
           };
-          const {data} =await axios.post(`/api/v1/payment/process`,paymentData,config);
+          const host=process.env.REACT_APP_BACKEND_HOST;
+          const {data} =await axios.post(`${host}/api/v1/payment/process`,paymentData,config);
           const client_secret=data.client_secret;
           if(!stripe || !elements){
             return;
